@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<style type="text/css" media="screen">
+	   
+	    main {
+
+			font-family: "Poppins", sans-serif;
+			min-height: 100vh;
+			background: linear-gradient(to right top, #ccffee, #33ccff);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+	    }
+
+	    input {
+
+	    	padding:5px 15px; 
+	    	border:0 none;
+			cursor:pointer;
+			-webkit-border-radius: 5px;
+			border-radius: 5px; 
+			font-size:15px;
+			background: white;
+			border: 2px solid lightblue
+		}
+
+		footer {
+
+			position: fixed;
+			left: 0;
+			bottom: 0;	
+			width: 100%;
+			background-color: whitesmoke;
+			color: grey;
+			font-family: "Poppins", sans-serif;
+			font-size:10px;
+			text-align: right;
+			z-index: 10;
+		}
+
+	    .glass {
+
+	    	background: white;
+			min-height: 80vh;
+			width: 80%;
+			background: linear-gradient(
+			    to right bottom,
+			    rgba(255, 255, 255, 0.7),
+			    rgba(255, 255, 255, 0.3)
+		  );
+			border-radius: 2rem;
+			z-index: 2;
+			backdrop-filter: blur(2rem);
+			display: flex;
+			justify-content: center;
+	    }
+
+	    .text {
+	    	text-align: center;
+	    }
+
+
+
+	</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BioTools</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+</head>
+<body>
+	<main>
+		<section class='glass'>
+			<div class="text">
+				<header class="mb-4"><h1 class="tm-text-shadow" style="text-shadow: 0px 0px 10px darkgray; font-size:45px;">α-Lytic Protease Cutter</h1></header>
+				<p class="mb-5 tm-font-big" style="font-size:20px;">Please pass in the aa. sequence of your protein below.</p>
+				<p class="mb-5 tm-font-big" style="font-size:15px;">(Characters other than aa. are not allowed.)</p>
+
+				<form method="POST" action="./" enctype="multipart/form-data">
+						{% csrf_token %}
+
+						<textarea cols="50" rows="5" name="seq"></textarea></br>
+						<input type="submit" value="Submit">
+				</form>
+
+				<br />
+				<br />
+				<br />
+
+				<input type="button" value="Back To Homepage" onclick="location.href='../'">
+
+			</div>
+		</section>
+	</main>
+
+	<footer>
+    	<p>2021 created by Yu-Xi Tsai</p>
+  	</footer>
+
+</body>
+</html>
