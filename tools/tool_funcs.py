@@ -17,10 +17,10 @@ def findNPosBySequon(seq):
 def alp_cutter(seq):
 
     # cutting sites for α-Lytic Protease
-    T_ind = [pos for pos, char in enumerate(seq) if char == 'T'] 
-    A_ind = [pos for pos, char in enumerate(seq) if char == 'A']
-    S_ind = [pos for pos, char in enumerate(seq) if char == 'S']
-    V_ind = [pos for pos, char in enumerate(seq) if char == 'V']
+    T_ind = [pos for pos, char in enumerate(seq) if char == 'T' or char == 't'] 
+    A_ind = [pos for pos, char in enumerate(seq) if char == 'A' or char == 'a']
+    S_ind = [pos for pos, char in enumerate(seq) if char == 'S' or char == 's']
+    V_ind = [pos for pos, char in enumerate(seq) if char == 'V' or char == 'v']
 
     a = set(T_ind).union(A_ind).union(S_ind).union(V_ind)
     a = list(a)
