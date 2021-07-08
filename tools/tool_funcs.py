@@ -7,12 +7,19 @@ from io import StringIO
 def findNPosBySequon(seq):
 
     # find sequon and n pos
-    pattern = '(N[ARNDBCEQZGHILKMFSTWYV]T)|(N[ARNDBCEQZGHILKMFSTWYV]S)'
-    ind = [str(m.start(0)+1)+'\n' for m in re.finditer(pattern, seq)]
-    s = StringIO() 
-    s.writelines(ind)
+    pattern = '(?i)(N[ARNDBCEQZGHILKMFSTWYV]T)|(N[ARNDBCEQZGHILKMFSTWYV]S)'
+    npos = [m.start(0)+1 for m in re.finditer(pattern, seq)]
+    sequon = [seq[m.start(0):m.start(0)+3] for m in re.finditer(pattern, seq)]
+    # Generate dataframe from result
+    df = [(npos[i], sequon[i]) for i in range(len(npos))]
+    df = pd.DataFrame(df)
+    df.columns = ['N-site', 'Sequon']
+    b = BytesIO()
+    writer = pd.ExcelWriter(b, engine='xlsxwriter')
+    df.to_excel(writer, header=True, index=False)
+    writer.save()
 
-    return s
+    return b
 
 def alp_cutter(seq):
 

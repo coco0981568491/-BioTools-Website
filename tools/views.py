@@ -15,7 +15,7 @@ def findNPosPage(request):
 
 		result = tool_funcs.findNPosBySequon(seq)
 		resp = HttpResponse(result.getvalue(), content_type='application/force-download')
-		resp['Content-Disposition'] = 'attachment; filename=NPosBySequon.txt'
+		resp['Content-Disposition'] = 'attachment; filename=NPosBySequon.xlsx'
 
 		return resp
 
