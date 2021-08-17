@@ -38,3 +38,19 @@ def aLPCutterPage(request):
 
 	else:
 		return render(request, 'aLPCutter.html', {})
+
+def findOPosPage(request):
+
+	if request.method == "POST":
+
+		# get data from input text (seq)
+		seq = request.POST.get('seq')
+
+		result = tool_funcs.findPotentialOPos(seq)
+		resp = HttpResponse(result.getvalue(), content_type='application/force-download')
+		resp['Content-Disposition'] = 'attachment; filename=OPosByST.xlsx'
+
+		return resp
+
+	else:
+		return render(request, 'findOPos.html', {})

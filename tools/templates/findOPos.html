@@ -76,13 +76,22 @@
 	<main>
 		<section class='glass'>
 			<div class="text">
-				<header class="mb-4"><h1 class="tm-text-shadow" style="text-shadow: 0px 0px 10px darkgray; font-size:45px;">Welcome to BioTools</h1></header>
-				<p class="mb-5 tm-font-big" style="font-size:20px;">Please click on the button below to use the tool.</p>
-				<p class="mb-5 tm-font-big" style="font-size:20px;">More tools are coming.</p>
-				<input type="button" value="Find N Pos. By Sequon" onclick="location.href='findNPos/'">
-				<input type="button" value="Find O Pos. By ST" onclick="location.href='findOPos/'">
-				<input type="button" value="α-Lytic Protease Cutter" onclick="location.href='aLPCutter/'">
+				<header class="mb-4"><h1 class="tm-text-shadow" style="text-shadow: 0px 0px 10px darkgray; font-size:45px;">Find O Pos. By ST</h1></header>
+				<p class="mb-5 tm-font-big" style="font-size:20px;">Please pass in the aa. sequence of your protein below.</p>
+				<p class="mb-5 tm-font-big" style="font-size:15px;">(Fasta or pure text. Case-insensitive)</p>
 
+				<form method="POST" action="./" enctype="multipart/form-data">
+						{% csrf_token %}
+
+						<textarea cols="50" rows="5" name="seq"></textarea></br>
+						<input type="submit" value="Submit">
+				</form>
+
+				<br />
+				<br />
+				<br />
+
+				<input type="button" value="Back To Homepage" onclick="location.href='../'">
 
 			</div>
 		</section>

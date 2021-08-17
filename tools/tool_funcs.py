@@ -77,3 +77,26 @@ def alp_cutter(seq):
     writer.save()
 
     return b
+
+def findPotentialOPos(seq):
+
+    # seq preprocessing
+    if '>' in seq:
+        seq = seq.split('\n')[1:] # get rid of the name section
+        seq = ''.join(re.findall(r'(?i)[a-z]', ''.join(seq))) # get rid of the possible ending w/ *
+    else:
+        seq = ''.join(re.findall(r'(?i)[a-z]', seq)) # get rid of the possible ending w/ *
+
+    # find o pos & numbered results
+    opos = [m.start(0)+1 for m in re.finditer(r'(?i)(s)|(t)', seq)]
+    st = [seq[m.start(0)] for m in re.finditer(r'(?i)(s)|(t)', seq)]
+    # Generate dataframe from result
+    df = [(st[i], opos[i]) for i in range(len(opos))]
+    df = pd.DataFrame(df)
+    df.columns = ['S/T', 'Potential O-glycan Sites']
+    b = BytesIO()
+    writer = pd.ExcelWriter(b, engine='xlsxwriter')
+    df.to_excel(writer, header=True, index=False)
+    writer.save()
+
+    return b
