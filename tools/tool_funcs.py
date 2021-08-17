@@ -6,6 +6,13 @@ from io import StringIO
 
 def findNPosBySequon(seq):
 
+    # seq preprocessing
+    if '>' in seq:
+        seq = seq.split('\n')[1:] # get rid of the name section
+        seq = ''.join(re.findall(r'(?i)[a-z]', ''.join(seq))) # get rid of the possible ending w/ *
+    else:
+        seq = ''.join(re.findall(r'(?i)[a-z]', seq)) # get rid of the possible ending w/ *
+
     # find sequon and n pos
     pattern = '(?i)(N[ARNDBCEQZGHILKMFSTWYV]T)|(N[ARNDBCEQZGHILKMFSTWYV]S)'
     npos = [m.start(0)+1 for m in re.finditer(pattern, seq)]
