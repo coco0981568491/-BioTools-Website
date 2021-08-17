@@ -30,6 +30,13 @@ def findNPosBySequon(seq):
 
 def alp_cutter(seq):
 
+    # seq preprocessing
+    if '>' in seq:
+        seq = seq.split('\n')[1:] # get rid of the name section
+        seq = ''.join(re.findall(r'(?i)[a-z]', ''.join(seq))) # get rid of the possible ending w/ *
+    else:
+        seq = ''.join(re.findall(r'(?i)[a-z]', seq)) # get rid of the possible ending w/ *
+
     # cutting sites for α-Lytic Protease
     T_ind = [pos for pos, char in enumerate(seq) if char == 'T' or char == 't'] 
     A_ind = [pos for pos, char in enumerate(seq) if char == 'A' or char == 'a']
