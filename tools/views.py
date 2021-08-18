@@ -60,9 +60,9 @@ def GlycamToPDBPage(request):
 	if request.method == "POST":
 
 		# get data and name it as file for convenience 
-		content = request.FILES["myFile"]
+		file = request.FILES["myFile"]
 
-		result = tool_funcs.GlycamToPDB(content)
+		result = tool_funcs.GlycamToPDB(file)
 		resp = HttpResponse(result.getvalue(), content_type='application/force-download')
 		resp['Content-Disposition'] = 'attachment; filename=GlycamToPDB.pdb'
 
