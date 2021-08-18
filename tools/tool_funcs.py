@@ -131,6 +131,5 @@ def GlycamToPDB(file):
 
     output = StringIO()
     output.write(content_altered)
-    output.close()
-
+    
     return output
