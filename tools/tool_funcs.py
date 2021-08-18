@@ -102,7 +102,7 @@ def findPotentialOPos(seq):
     return b
 
 def GlycamToPDB(file):
-    content = file.read()
+    content = file.read().decode('utf-8')
     # SPECIAL PAIRS: mods made to atm if nag is resi
     content_altered = re.sub('C2N (0YB|4YB|UYA|UYB)', 'C7  NAG', content, flags = re.M)
     content_altered = re.sub('O2N (0YB|4YB|UYA|UYB)', 'O7  NAG', content_altered, flags = re.M)
