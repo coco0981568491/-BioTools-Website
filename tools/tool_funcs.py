@@ -101,34 +101,32 @@ def findPotentialOPos(seq):
 
     return b
 
-def GlycamToPDB(file):
-    with open(file, 'r') as f:
-        content = f.read()
-        # SPECIAL PAIRS: mods made to atm if nag is resi
-        content_altered = re.sub('C2N (0YB|4YB|UYA|UYB)', 'C7  NAG', content, flags = re.M)
-        content_altered = re.sub('O2N (0YB|4YB|UYA|UYB)', 'O7  NAG', content_altered, flags = re.M)
-        content_altered = re.sub('CME (0YB|4YB|UYA|UYB)', 'C8  NAG', content_altered, flags = re.M)
-        # SPECIAL PAIRS: mods made to atm if sia is resi
-        content_altered = re.sub('CME 0SA', 'C11 SIA', content_altered, flags = re.M)
-        # rest of the atm name changes
-        content_altered = re.sub('O5N', 'O10', content_altered, flags = re.M)
-        content_altered = re.sub('C5N', 'C10', content_altered, flags = re.M)
-        # rest of the resi name changes (-> NAG)
-        content_altered = re.sub('0YB|4YB|UYA|UYB', 'NAG', content_altered, flags = re.M)
-        # (-> BMA)
-        content_altered = re.sub('VMB', 'BMA', content_altered, flags = re.M)
-        # (-> MAN)
-        content_altered = re.sub('(V|X|Y|0|2|4)MA', 'MAN', content_altered, flags = re.M)
-        # (-> GAL)
-        content_altered = re.sub('(0|6)LB', 'GAL', content_altered, flags = re.M)
-        # (-> FUC)
-        content_altered = re.sub('0fA', 'FUC', content_altered, flags = re.M)
-        # (-> HIS)
-        content_altered = re.sub('HIE', 'HIS', content_altered, flags = re.M)
-        # (-> CYS)
-        content_altered = re.sub('CYX', 'CYS', content_altered, flags = re.M)
-        # (-> SIA)
-        content_altered = re.sub('0SA', 'SIA', content_altered, flags = re.M)
+def GlycamToPDB(content):
+    # SPECIAL PAIRS: mods made to atm if nag is resi
+    content_altered = re.sub('C2N (0YB|4YB|UYA|UYB)', 'C7  NAG', content, flags = re.M)
+    content_altered = re.sub('O2N (0YB|4YB|UYA|UYB)', 'O7  NAG', content_altered, flags = re.M)
+    content_altered = re.sub('CME (0YB|4YB|UYA|UYB)', 'C8  NAG', content_altered, flags = re.M)
+    # SPECIAL PAIRS: mods made to atm if sia is resi
+    content_altered = re.sub('CME 0SA', 'C11 SIA', content_altered, flags = re.M)
+    # rest of the atm name changes
+    content_altered = re.sub('O5N', 'O10', content_altered, flags = re.M)
+    content_altered = re.sub('C5N', 'C10', content_altered, flags = re.M)
+    # rest of the resi name changes (-> NAG)
+    content_altered = re.sub('0YB|4YB|UYA|UYB', 'NAG', content_altered, flags = re.M)
+    # (-> BMA)
+    content_altered = re.sub('VMB', 'BMA', content_altered, flags = re.M)
+    # (-> MAN)
+    content_altered = re.sub('(V|X|Y|0|2|4)MA', 'MAN', content_altered, flags = re.M)
+    # (-> GAL)
+    content_altered = re.sub('(0|6)LB', 'GAL', content_altered, flags = re.M)
+    # (-> FUC)
+    content_altered = re.sub('0fA', 'FUC', content_altered, flags = re.M)
+    # (-> HIS)
+    content_altered = re.sub('HIE', 'HIS', content_altered, flags = re.M)
+    # (-> CYS)
+    content_altered = re.sub('CYX', 'CYS', content_altered, flags = re.M)
+    # (-> SIA)
+    content_altered = re.sub('0SA', 'SIA', content_altered, flags = re.M)
 
     output = StringIO()
     output.write(content_altered)
