@@ -76,14 +76,22 @@
 	<main>
 		<section class='glass'>
 			<div class="text">
-				<header class="mb-4"><h1 class="tm-text-shadow" style="text-shadow: 0px 0px 10px darkgray; font-size:45px;">Welcome to BioTools</h1></header>
-				<p class="mb-5 tm-font-big" style="font-size:20px;">Please click on the button below to use the tool.</p>
-				<p class="mb-5 tm-font-big" style="font-size:20px;">More tools are coming.</p>
-				<input type="button" value="Find N Pos. By Sequon" onclick="location.href='findNPos/'">
-				<input type="button" value="Find O Pos. By ST" onclick="location.href='findOPos/'">
-				<input type="button" value="α-Lytic Protease Cutter" onclick="location.href='aLPCutter/'">
-				<input type="button" value="Glycam To PDB Naming" onclick="location.href='GlycamToPDB/'">
+				<header class="mb-4"><h1 class="tm-text-shadow" style="text-shadow: 0px 0px 10px darkgray; font-size:45px;">Glycam To PDB Naming</h1></header>
+				<p class="mb-5 tm-font-big" style="font-size:20px;">Please select a .pdb file from your computer.</p>
+				<p class="mb-5 tm-font-big" style="font-size:15px;">(This tool can convert the atom/residue names in Glycam-exported .pdb back to PDB naming for downstream analysis e.g. Coot.)</p>
 
+				<form method="POST" action="./" enctype="multipart/form-data">
+						{% csrf_token %}
+
+						<input type="file" name="myFile" style="background-color: #555; color: #fff;">
+						<input type="submit" name="submit">
+				</form>
+
+				<br />
+				<br />
+				<br />
+
+				<input type="button" value="Back To Homepage" onclick="location.href='../'">
 
 			</div>
 		</section>

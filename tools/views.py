@@ -54,3 +54,20 @@ def findOPosPage(request):
 
 	else:
 		return render(request, 'findOPos.html', {})
+
+def GlycamToPDBPage(request):
+
+	if request.method == "POST":
+
+		# get data and name it as file for convenience 
+		file = request.FILES["myFile"]
+
+		result = tool_funcs.GlycamToPDB(file)
+		resp = HttpResponse(result.getvalue(), content_type='application/force-download')
+		resp['Content-Disposition'] = 'attachment; filename=GlycamToPDB.pdb'
+
+		return resp
+
+	else:
+		return render(request, 'GlycamToPDB.html', {})
+
