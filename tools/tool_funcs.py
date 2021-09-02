@@ -14,7 +14,7 @@ def findNPosBySequon(seq):
         seq = ''.join(re.findall(r'(?i)[a-z]', seq)) # get rid of the possible ending w/ *
 
     # find sequon and n pos
-    pattern = '(?i)(N[ARNDBCEQZGHILKMFSTWYV]T)|(N[ARNDBCEQZGHILKMFSTWYV]S)'
+    pattern = '(?=((?i)(N[ARNDBCEQZGHILKMFSTWYV]T)|(N[ARNDBCEQZGHILKMFSTWYV]S)))'
     npos = [m.start(0)+1 for m in re.finditer(pattern, seq)]
     sequon = [seq[m.start(0):m.start(0)+3] for m in re.finditer(pattern, seq)]
     # Generate dataframe from result
