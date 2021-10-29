@@ -15,8 +15,8 @@ def findNPosBySequon(seq):
 
     # find sequon and n pos
     pattern = '(?=((?i)(N[ARNDBCEQZGHILKMFSTWYV]T)|(N[ARNDBCEQZGHILKMFSTWYV]S)))'
-    npos = [m.start(0)+1 for m in re.finditer(pattern, seq)]
-    sequon = [seq[m.start(0):m.start(0)+3] for m in re.finditer(pattern, seq)]
+    npos = [m.start(0)+1 for m in re.finditer(pattern, seq, overlapped = True)]
+    sequon = [seq[m.start(0):m.start(0)+3] for m in re.finditer(pattern, seq, overlapped = True)]
     # Generate dataframe from result
     df = [(npos[i], sequon[i]) for i in range(len(npos))]
     df = pd.DataFrame(df)
