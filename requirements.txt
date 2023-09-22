@@ -109,6 +109,7 @@ QDarkStyle==2.8.1
 QtAwesome==0.7.2
 QtPy==1.9.0
 redis
+regex
 rq
 rope==0.17.0
 seaborn==0.10.1
